@@ -1,0 +1,4 @@
+﻿.container-right{
+    width: calc(100% - 200px);
+    height: 100%;
+}

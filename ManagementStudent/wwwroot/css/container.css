@@ -1,0 +1,6 @@
+﻿/*Class nội dung chính của trang*/
+.container {
+    width: 100%;
+    height: calc(100vh - 100px);
+    display: flex; /*thuộc tính set cho các trường con nằm trên cùng một hàng*/
+}
