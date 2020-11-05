@@ -34,7 +34,10 @@
             <div class="content">
                 <!--Thanh công cụ: thêm, sửa, xoá, nhân bản-->
                 <div class="tool">
-
+                    <button>Thêm</button>
+                    <button disabled>Sửa</button>
+                    <button disabled>Xoá</button>
+                    <button disabled>Nhân bản</button>
                 </div>
 
                 <!--Bảng hiện thị dữ liệu-->
@@ -54,8 +57,7 @@
                             </tr>
                         </thead>
 
-                        <tbody id="tb_student_body">
-                        </tbody>
+                        <tbody id="tb_student_body"></tbody>
                     </table>
                 </div>
 
@@ -63,14 +65,14 @@
                 <div class="paging">
                     <div class="item-right">
                         <div id="pagination">
-                            <a href="#">&laquo;</a>
+                            <a id="pre_index" href="#">&laquo;</a>
                             <a href="#" class="active">1</a>
                             <a href="#">2</a>
                             <a href="#">3</a>
                             <a href="#">4</a>
                             <a href="#">5</a>
                             <a href="#">6</a>
-                            <a href="#">&raquo;</a>
+                            <a id="next_index" href="#">&raquo;</a>
                         </div>
                     </div>
                 </div>

@@ -5,8 +5,20 @@
 class StudentJS {
     constructor() {
         this.loadData();
+        this.initEvent();
     }
 
+    // hàm khởi tạo các sự kiện
+    initEvent() {
+
+        //Xử lý khi click chọn một hàng
+        $("#tb_student").on("click", "tbody tr", function () {
+            $('.item-selected').removeClass('item-selected');
+            $(this).addClass("item-selected");
+        });
+    }
+
+    ///hàm load thông tin sinh viên ra bảng
     loadData() {
         try {
             $.ajax({

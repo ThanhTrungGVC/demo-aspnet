@@ -25,3 +25,8 @@
 .item-italic{
     font-style: italic;
 }
+
+.item-selected {
+    background-color: #0094ff !important;
+    color: #fff;
+}
