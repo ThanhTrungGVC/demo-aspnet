@@ -24,7 +24,7 @@ namespace ManagementStudent.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Student>>> GetStudent()
         {
-            return await _context.Student.OrderBy(i => i.StudentCode).ToListAsync();
+            return await _context.Student.OrderBy(i => i.StudentCode).Take(20).ToListAsync();
         }
 
         // GET: api/Students/5

@@ -4,3 +4,24 @@
     font-size: 14px;
     margin: 0;
 }
+
+.item-center{
+    text-align: center;
+}
+
+.item-right{
+    text-align: right;
+    padding-right: 3px;
+}
+
+.item-left{
+    text-align: left;
+}
+
+.item-bold{
+    font-weight: bold;
+}
+
+.item-italic{
+    font-style: italic;
+}

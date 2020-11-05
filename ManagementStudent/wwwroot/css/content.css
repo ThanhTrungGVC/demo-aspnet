@@ -1,5 +1,49 @@
 ﻿.content{
+    width: calc(100% - 18px);
+    height: calc(92% - 18px);
+    margin: 8px 8px 8px 8px;
+    border: 1px solid #0026ff;
+}
+
+.content .tool{
     width: 100%;
-    height: 90%;
-    background-color: #0b2d46;
+    height: 40px;
+    background-color: #d36618;
+}
+
+.content .tb-data{
+    width: 100%;
+    height: calc(100% - 40px - 40px);
+}
+
+        .tb-data #tb_student {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #tb_student td, #tb_student th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #tb_student tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #tb_student tr:hover {
+            background-color: #ddd;
+        }
+
+        #tb_student th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+.content .paging{
+    width: 100%;
+    height: 40px;
+    background-color: #808080;
 }

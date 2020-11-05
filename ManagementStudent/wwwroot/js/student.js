@@ -18,10 +18,17 @@ class StudentJS {
                 $("#tb_student tbody").empty();
                 var i = 1;
                 $.each(res, function (index, item) {
+                    debugger
                     var trHTML = $(`<tr>
-                                        <td>`+ i + `</td>
+                                        <td class="item-center">`+ i + `</td>
                                         <td>`+ item.studentCode + `</td>
                                         <td>`+ item.fullName + `</td>
+                                        <td>`+ item.email + `</td>
+                                        <td>`+ item.faculty + `</td>
+                                        <td>`+ item.className + `</td>
+                                        <td class="item-right">`+ item.gpa + `</td>
+                                        <td>`+ item.address + `</td>
+                                        <td class="item-center item-bold">`+ "..." + `</td>
                                     </tr>`);
                     $('#tb_student tbody').append(trHTML);
                     i++;

@@ -31,7 +31,37 @@
         <div class="container-right">
             <!--Hiện thị dữ liệu trang-->
             <div class="content">
+                <!--Thanh công cụ: thêm, sửa, xoá, nhân bản-->
+                <div class="tool">
 
+                </div>
+
+                <!--Bảng hiện thị dữ liệu-->
+                <div class="tb-data">
+                    <table border="1" id="tb_student">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã sinh viên</th>
+                                <th>Tên sinh viên</th>
+                                <th>Email</th>
+                                <th>Khoa</th>
+                                <th>Lớp</th>
+                                <th>Điểm trung bình</th>
+                                <th>Địa chỉ</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tb_student_body">
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--Phân trang-->
+                <div class="paging">
+
+                </div>
             </div>
 
             <!--Footer của trang-->
@@ -41,22 +71,7 @@
         </div>
     </div>
 
-    <!--<h1>Thông tin sinh viên</h1>
-
-    <table border="1" id="tb_student">
-        <thead>
-            <tr>
-                <th>STT</th>
-                <th>Mã sinh viên</th>
-                <th>Tên sinh viên</th>
-            </tr>
-        </thead>
-
-        <tbody id="tb_student_body">
-        </tbody>
-    </table>-->
-
     <script src="js/jquery-3.5.1.min.js"></script>
-    <!--<script src="js/student.js"></script>-->
+    <script src="js/student.js"></script>
 </body>
 </html>
