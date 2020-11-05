@@ -30,7 +30,7 @@ namespace ManagementStudent
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationdbContext>(options => options
-               .UseMySql("server=localhost;port=3306;user=nttrung;password=12345678@Abc;database=demo_php_devolop_student;",
+               .UseMySql("server=localhost;port=3306;user=root;password=;database=demo_php_devolop_student;",
                    mysqlOptions =>
                        mysqlOptions.ServerVersion(new ServerVersion(new Version(10, 4, 6), ServerType.MariaDb))));
 
