@@ -24,6 +24,34 @@ class StudentJS {
             $("#btn_del").prop("disabled", false);
             $("#btn_doub").prop("disabled", false);
         });
+
+        // khi click vào nút thêm thì hiện form thêm mới
+        $("#btn_add").on("click", this.OpenForm);
+
+        // khi click vào nút sửa thì gọi đến hàm sửa
+        $("#btn_edit").on("click", this.EditStudent.bind(this));
+
+        // khi click vào nút X đóng lại Form
+        $("#model_exit").on("click", this.CloseForm);
+        
+    }
+
+    // Hàm mở form nhập liệu lên
+    OpenForm() {
+        $("#model").show();
+    }
+
+    // Hàm đóng lại form
+    CloseForm() {
+        $("#model").hide();
+    }
+
+
+    // Sửa thông tin sinh viên
+    EditStudent() {
+        debugger
+        // mở form
+        this.OpenForm();
     }
 
     ///hàm load thông tin sinh viên ra bảng
