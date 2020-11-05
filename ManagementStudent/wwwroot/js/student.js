@@ -13,8 +13,16 @@ class StudentJS {
 
         //Xử lý khi click chọn một hàng
         $("#tb_student").on("click", "tbody tr", function () {
+            // Xoá màu các dòng đã chọn trước đó
             $('.item-selected').removeClass('item-selected');
+
+            // Đổi màu dòng được chọn
             $(this).addClass("item-selected");
+
+            // Enable các nút sửa xoá nhân bản
+            $("#btn_edit").prop("disabled", false);
+            $("#btn_del").prop("disabled", false);
+            $("#btn_doub").prop("disabled", false);
         });
     }
 
