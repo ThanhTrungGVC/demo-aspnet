@@ -33,6 +33,7 @@ class StudentJS {
 
         // khi click vào nút X đóng lại Form
         $("#model_exit").on("click", this.CloseForm);
+        $("#btn-close").on("click", this.CloseForm);
         
     }
 

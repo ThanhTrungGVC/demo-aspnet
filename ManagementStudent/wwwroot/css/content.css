@@ -12,6 +12,7 @@
 
 .content .tb-data{
     width: 100%;
+    min-width: 1565px;
     height: calc(100% - 40px - 40px);
 }
 

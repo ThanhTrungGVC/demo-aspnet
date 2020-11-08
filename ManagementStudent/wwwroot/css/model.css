@@ -10,35 +10,70 @@
     display: flex;
 }
 
-#form{
+#form {
     width: 700px;
+    min-width: 593px;
     height: 500px;
     margin-top: 250px;
-    background-color: #0026ff;
+    background-color: #ffffff;
+    border: 5px solid #0026ff;
+    border-radius: 2%;
 }
 
     #form .model-header{
         height: 40px;
         width: 100%;
         display: flex;
-    }
-
-    .model-header .model-title{
+        background-color: #0026ff;
         font-size: 18px;
-        text-align: left;
-        margin-left: 8px;
-        margin-top: 8px;
-        width: 95%;
+        color: #ffffff;
     }
 
-    #model_exit {
-        font-size: 18px;
-        margin-top: 8px;
-        margin-right: 8px;
-        height: 100%;
-        text-align: right;
-    }
+        .model-header .model-title{
+            font-size: 18px;
+            text-align: left;
+            margin-left: 8px;
+            margin-top: 8px;
+            width: 95%;
+        }
 
-    #model_exit:hover{
-        cursor: pointer;
-    }
+        #model_exit {
+            font-size: 18px;
+            margin-top: 8px;
+            margin-right: 8px;
+            height: 100%;
+            text-align: right;
+        }
+
+        #model_exit:hover{
+            cursor: pointer;
+        }
+
+#form .model-container{
+    margin: 8px;
+}
+
+.model-container label {
+    padding-left: 26px;
+    width: 125px;
+    display: inline-block;
+}
+
+.model-container input {
+    width: 70%;
+    height: 20px;
+}
+
+#form .model-footer{
+    width: 80%;
+    height: 50px;
+    text-align: right;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.model-footer button{
+    margin-right: 15px;
+    height: 30px;
+    width: 80px;
+}
