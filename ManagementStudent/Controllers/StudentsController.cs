@@ -79,6 +79,18 @@ namespace ManagementStudent.Controllers
         [HttpPost]
         public async Task<ActionResult<Student>> PostStudent(Student student)
         {
+            // sinh ID ngẫu nhiên cho sinh viên
+            student.StudentId = Guid.NewGuid();
+
+            // gán ngày tạo
+            student.CreatedDate = DateTime.Now;
+
+            // gán ngày sửa
+            student.ModifideDate = DateTime.Now;
+
+            // gán Họ và tên
+            student.FullName = student.FirstName + " " + student.LastName;
+
             _context.Student.Add(student);
             try
             {

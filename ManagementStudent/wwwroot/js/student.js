@@ -2,6 +2,8 @@
     studentJs = new StudentJS();
 })
 
+var error = { code: "", firstName: "", lastName: "", email: "", className: "" };
+
 class StudentJS {
     constructor() {
         this.loadData();
@@ -34,12 +36,19 @@ class StudentJS {
         // khi click vào nút X đóng lại Form
         $("#model_exit").on("click", this.CloseForm);
         $("#btn-close").on("click", this.CloseForm);
+
+        // khi click vào nút Lưu thì gọi đến hàm lưu thông tin
+        $("#btn-save").on("click", this.SaveValueForm.bind(this));
         
     }
 
     // Hàm mở form nhập liệu lên
     OpenForm() {
+        // hiện model
         $("#model").show();
+
+        // focus vào ô đầu tiên
+        $('#model input')[0].focus();
     }
 
     // Hàm đóng lại form
@@ -47,12 +56,80 @@ class StudentJS {
         $("#model").hide();
     }
 
-
     // Sửa thông tin sinh viên
     EditStudent() {
-        debugger
         // mở form
         this.OpenForm();
+
+        // in thông tin lên form
+
+    }
+
+    // lưu thông tin
+    SaveValueForm() {
+        // kiểm tra nhập liệu
+        var hasError = this.Validate();
+
+        // nếu có lỗi thì thông báo lỗi
+        if (hasError) {
+            alert("Các trường đánh dấu (*) không được để trống. Vui lòng kiểm tra lại!");
+        } else {
+            // lấy thông tin từ form
+            var student = this.GetValueForm();
+            $.ajax({
+                url: "/api/Students",
+                method: "POST",
+                dataType: 'json',
+                data: JSON.stringify(student),
+                contentType: 'application/json'
+            }).done(function (e) {
+                alert("Thêm mới sinh viên thành công!");
+                this.CloseForm();
+            }).fail(function (e) {
+                alert("Thất bại, vui lòng thử lại");
+            })
+        }
+
+    }
+
+    // Lấy dữ liệu từ form và map lên đối tượng student
+    GetValueForm() {
+        var student = {
+            studentCode: $("#studentCode").val(),
+            firstName: $("#firstName").val(),
+            lastName: $("#lastName").val(),
+            email: $("#email").val(),
+            gender: parseInt($("#gender").val()),
+            className: $("#className").val(),
+            faculty: $("#faculty").val(),
+            birthday: $("#birthday").val(),
+            address: $("#address").val()
+        };
+
+        return student;
+    }
+
+    // Kiểm tra nhập liệu người dùng
+    Validate() {
+        // lấy dữ liệu
+        var code = $("#studentCode").val();
+        var firstName = $("#firstName").val();
+
+        // biến check
+        var hasError = false;
+
+        // kiểm tra trường mã sinh viên
+        if (code == null || code == "") {
+            hasError = true;
+        }
+
+        // kiểm tra trường họ đệm
+        if (firstName == null || firstName == "") {
+            hasError = true;
+        }
+
+        // trả về kết quả có lỗi / không có lỗi
+        return hasError;
     }
 
     ///hàm load thông tin sinh viên ra bảng
@@ -67,7 +144,6 @@ class StudentJS {
                 $("#tb_student tbody").empty();
                 var i = 1;
                 $.each(res, function (index, item) {
-                    debugger
                     var trHTML = $(`<tr>
                                         <td class="item-center">`+ i + `</td>
                                         <td>`+ item.studentCode + `</td>
@@ -83,7 +159,6 @@ class StudentJS {
                     i++;
                 })
             }).fail(function (res) {
-                debugger;
                 //alert(res)
             })
 
