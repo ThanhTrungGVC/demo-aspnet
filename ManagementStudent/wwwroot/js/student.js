@@ -2,7 +2,7 @@
     studentJs = new StudentJS();
 })
 
-var error = { code: "", firstName: "", lastName: "", email: "", className: "" };
+var status = "add";
 
 class StudentJS {
     constructor() {
@@ -39,7 +39,9 @@ class StudentJS {
 
         // khi click vào nút Lưu thì gọi đến hàm lưu thông tin
         $("#btn-save").on("click", this.SaveValueForm.bind(this));
-        
+
+        // khi nút xoá được click
+        $("#btn_del").on("click", this.RemoveStudent.bind(this));
     }
 
     // Hàm mở form nhập liệu lên
@@ -53,38 +55,104 @@ class StudentJS {
 
     // Hàm đóng lại form
     CloseForm() {
+        // xóa dữ liệu đang có trên dialog
+        $('#model input').val("");
+
+        // Đặt lại trạng thái
+        status = "add";
+
+        // ẩn form
         $("#model").hide();
     }
 
     // Sửa thông tin sinh viên
+    // 1/ xử lý thời gian
+    // 2/ Load lại trang sau khi sửa
     EditStudent() {
+        // lấy ID của sinh viên được chọn
+        var studentId = this.GetStudentIdSelected();
+        // Lấy thông tin sinh viên bằng studentId
+        var student = $.ajax({
+            method: 'GET',
+            url: "/api/Students/" + studentId,
+            async: false,
+            dataType: 'json',
+            data: {},
+            contentType: "application/json",
+            success: function (results) {
+            },
+            fail: function (results) {
+            }
+        }).responseJSON;
+
         // mở form
         this.OpenForm();
 
         // in thông tin lên form
+        $("#studentCode").val(student.studentCode);
+        $("#firstName").val(student.firstName);
+        $("#lastName").val(student.lastName);
+        $("#email").val(student.email);
+        $("#gender").val(student.gender);
+        $("#className").val(student.className);
+        $("#faculty").val(student.faculty);
+        $("#birthday").val(student.birthday);
+        $("#address").val(student.address);
 
+        // Đặt trạng thái
+        status = studentId;
+    }
+
+    //Xoá sinh viên
+    RemoveStudent() {
+        if (confirm("Bạn có chắc chắn muốn xoá không?")) {
+            var studentId = this.GetStudentIdSelected();
+            $.ajax({
+                url: "/api/Students/" + studentId,
+                method: "DELETE",
+                dataType: 'json',
+                contentType: 'application/json'
+            }).done(function (e) {
+                alert("Bạn đã xoá thành công sinh viên");
+            }).fail(function (e) {
+                alert("Thất bại, vui lòng thử lại");
+            })
+        }
     }
 
     // lưu thông tin
     SaveValueForm() {
+        var me = this;
         // kiểm tra nhập liệu
-        var hasError = this.Validate();
+        var hasError = me.Validate();
 
         // nếu có lỗi thì thông báo lỗi
         if (hasError) {
             alert("Các trường đánh dấu (*) không được để trống. Vui lòng kiểm tra lại!");
         } else {
             // lấy thông tin từ form
-            var student = this.GetValueForm();
+            var student = me.GetValueForm();
+
+            var url = "/api/Students";
+            var method = "POST";
+            var mess_success = "Thêm mới sinh viên thành công!";
+
+            if (status != "add") {
+                url = url.concat("/", status);
+                method = "PUT";
+                student.studentId = status;
+                mess_success = "Sửa thông tin thành công";
+            }
+
             $.ajax({
-                url: "/api/Students",
-                method: "POST",
+                url: url,
+                method: method,
                 dataType: 'json',
                 data: JSON.stringify(student),
                 contentType: 'application/json'
             }).done(function (e) {
-                alert("Thêm mới sinh viên thành công!");
-                this.CloseForm();
+                me.CloseForm();
+                alert(mess_success);
             }).fail(function (e) {
                 alert("Thất bại, vui lòng thử lại");
             })
@@ -107,6 +175,11 @@ class StudentJS {
         };
 
         return student;
+    }
+
+    // Lấy ID của sinh viên đang được chọn
+    GetStudentIdSelected() {
+        return $("tr.item-selected").data("id");
     }
 
     // Kiểm tra nhập liệu người dùng
@@ -155,6 +228,7 @@ class StudentJS {
                                         <td>`+ item.address + `</td>
                                         <td class="item-center item-bold">`+ "..." + `</td>
                                     </tr>`);
+                    trHTML.data("id", item["studentId"]);
                     $('#tb_student tbody').append(trHTML);
                     i++;
                 })

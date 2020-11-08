@@ -10,16 +10,18 @@
     height: 40px;
 }
 
-.content .tb-data{
-    width: 100%;
-    min-width: 1565px;
-    height: calc(100% - 40px - 40px);
-}
+    .content .tb-data {
+        width: 100%;
+        min-width: 1565px;
+        height: calc(100% - 40px - 40px);
+        overflow: auto;
+    }
 
-        .tb-data #tb_student {
-            border-collapse: collapse;
-            width: 100%;
-        }
+.tb-data #tb_student {
+    border-collapse: collapse;
+    width: 100%;
+    
+}
 
         #tb_student td, #tb_student th {
             border: 1px solid #ddd;
@@ -34,13 +36,16 @@
             background-color: #ddd;
         }
 
-        #tb_student th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            text-align: center;
-            background-color: #4CAF50;
-            color: white;
-        }
+#tb_student th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
 
 .content .paging{
     width: 100%;

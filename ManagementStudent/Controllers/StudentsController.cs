@@ -24,7 +24,8 @@ namespace ManagementStudent.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Student>>> GetStudent()
         {
-            return await _context.Student.OrderBy(i => i.StudentCode).Take(15).ToListAsync();
+            //return await _context.Student.OrderBy(i => i.StudentCode).Take(15).ToListAsync();
+            return await _context.Student.OrderBy(i => i.StudentCode).ToListAsync();
         }
 
         // GET: api/Students/5
@@ -51,6 +52,9 @@ namespace ManagementStudent.Controllers
             {
                 return BadRequest();
             }
+
+            // gán Họ và tên
+            student.FullName = student.FirstName + " " + student.LastName;
 
             _context.Entry(student).State = EntityState.Modified;
 
